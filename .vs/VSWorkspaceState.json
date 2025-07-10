@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Application",
+    "\\Application\\DTOs",
+    "\\Application\\DTOs\\Order",
+    "\\Infrastructure",
+    "\\Infrastructure\\Repositories"
+  ],
+  "SelectedNode": "\\Logs",
+  "PreviewInSolutionExplorer": false
+}

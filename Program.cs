@@ -94,6 +94,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowAll");
 
+// Middleware olarak loglamas
+app.UseMiddleware<LogMiddleware>();
+
 app.UseAuthentication();
 
 app.UseAuthorization();
