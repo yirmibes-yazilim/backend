@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using backend.Application.DTOs.Addresses;
 using backend.Application.DTOs.Auth;
+using backend.Application.DTOs.CardItem;
 using backend.Application.DTOs.Category;
+using backend.Application.DTOs.Order;
+using backend.Application.DTOs.OrderItem;
 using backend.Application.DTOs.Product;
 using backend.Application.DTOs.UserRole;
 using backend.Domain.Entities;
@@ -38,6 +42,19 @@ namespace API.Infrastructure.Profiles
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<UpdateUserRoleRequest, UserRole>();
             CreateMap<UserRole, GetUserRoleResponse>();
+
+            CreateMap<CreateAddressesRequestDto, Address>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            CreateMap<Address, GetAddressesResponseDto>();
+            CreateMap<UpdateAddressesRequestDto, Address>();
+
+            CreateMap<CreateCardItemRequestDto, CardItem>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<CardItem, GetCardItemResponseDto>();
+
+            CreateMap<Order, GetOrderResponseDto>();
+            CreateMap<OrderItem, GetOrderItemResponseDto>();    
         }
     }
 }

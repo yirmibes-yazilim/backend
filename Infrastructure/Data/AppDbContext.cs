@@ -13,7 +13,7 @@ namespace backend.Infrastructure.Data
         {
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<Addresses> Addresses { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<CardItem> CardItems { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }

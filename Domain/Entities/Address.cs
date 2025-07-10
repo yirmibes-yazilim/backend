@@ -1,6 +1,6 @@
 ﻿namespace backend.Domain.Entities
 {
-    public class Addresses
+    public class Address
     {
         public int Id { get; set; }
         public int UserId { get; set; }

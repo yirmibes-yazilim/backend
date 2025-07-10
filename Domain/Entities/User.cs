@@ -10,7 +10,7 @@
         public string LastName { get; set; }
         public List<UserRole> Roles { get; set; }
         public List<RefreshToken> RefreshTokens { get; set; }
-        public List<Addresses> Addresses { get; set; }
+        public List<Address> Addresses { get; set; }
         public List<CardItem> CardItems { get; set; }
         public List<Order> Orders { get; set; }
 

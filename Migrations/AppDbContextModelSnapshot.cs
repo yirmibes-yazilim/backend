@@ -22,7 +22,7 @@ namespace backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("backend.Domain.Entities.Addresses", b =>
+            modelBuilder.Entity("backend.Domain.Entities.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,6 +154,9 @@ namespace backend.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -163,6 +166,8 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
                 });
@@ -291,7 +296,7 @@ namespace backend.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("backend.Domain.Entities.Addresses", b =>
+            modelBuilder.Entity("backend.Domain.Entities.Address", b =>
                 {
                     b.HasOne("backend.Domain.Entities.User", "User")
                         .WithMany("Addresses")
@@ -340,7 +345,15 @@ namespace backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("backend.Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.Product", b =>

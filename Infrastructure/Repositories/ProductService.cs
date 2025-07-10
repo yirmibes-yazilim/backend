@@ -24,6 +24,7 @@ namespace backend.Infrastructure.Repositories
         public async Task<Response<NoContent>> AddProductAsync(CreateProductRequestDto product)
         {
             var newProduct = _mapper.Map<CreateProductRequestDto, Product>(product);
+            await _service.AddAsync(newProduct);
             return Response<NoContent>.Success(HttpStatusCode.OK, "Ürün Ekleme Başarılı!");
         }
 

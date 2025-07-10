@@ -38,7 +38,7 @@ namespace backend.Infrastructure.Repositories
             if (entity != null)
                 _dbSet.Remove(entity);
                 await _unitofWork.CommitAsync();
-        }
+        }   
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
