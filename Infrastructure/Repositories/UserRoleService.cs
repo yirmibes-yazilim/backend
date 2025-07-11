@@ -51,7 +51,7 @@ namespace backend.Infrastructure.Repositories
             var userRole = await _service.GetFirstOrDefaultAsync(x => x.UserId == userId);
             if (userRole == null)
             {
-                return Response<GetUserRoleResponse>.Fail("Ürün Yok.", HttpStatusCode.BadRequest);
+                return Response<GetUserRoleResponse>.Fail("Kullanıcı Yok.", HttpStatusCode.BadRequest);
             }
             else
             {

@@ -17,10 +17,10 @@ namespace backend.WebAPI.Controllers
             _addressesService = addressesService;
         }
 
-        [HttpGet("getAll")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("getAllByUserId/{id}")]
+        public async Task<IActionResult> GetAllByUserId(int id)
         {
-            return Ok(await _addressesService.GetAddressesAllAsync());
+            return Ok(await _addressesService.GetAddressesAllByUserIdAsync(id));
         }
 
         [HttpGet("getById/{id}")]

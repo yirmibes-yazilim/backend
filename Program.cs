@@ -1,4 +1,5 @@
 using API.Infrastructure.Profiles;
+using Azure.Storage.Blobs;
 using backend.Application.DTOs.Auth;
 using backend.Application.DTOs.Category;
 using backend.Application.DTOs.Product;
@@ -7,6 +8,8 @@ using backend.Application.Validator;
 using backend.Domain.Entities;
 using backend.Infrastructure.Data;
 using backend.Infrastructure.Repositories;
+using backend.Loger;
+using backend.WebAPI.Middleware;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -80,7 +83,16 @@ builder.Services.AddScoped<IUserRoleService, UserRoleService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<ICardItemService, CardItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddSingleton<IMyLogger, MyLogger>();
+builder.Services.AddSingleton(sp =>
+{
+    var cfg = sp.GetRequiredService<IConfiguration>();
+    var conn = cfg["AzureBlobStorage:ConnectionString"];
+    var container = cfg["AzureBlobStorage:ContainerName"];
+    return new BlobContainerClient(conn, container);
+});
 
+builder.Services.AddScoped<IBlobService, BlobService>();
 
 var app = builder.Build();
 

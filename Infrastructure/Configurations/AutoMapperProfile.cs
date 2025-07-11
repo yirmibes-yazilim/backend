@@ -18,7 +18,8 @@ namespace API.Infrastructure.Profiles
         public AutoMapperProfile()
         {
             CreateMap<CreateProductRequestDto, Product>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
             CreateMap<Product, GetProductResponseDto>();
 
             CreateMap<CreateCategoryRequestDto, Category>()
@@ -26,7 +27,8 @@ namespace API.Infrastructure.Profiles
 
             CreateMap<Category, GetCategoryResponseDto>();
 
-            CreateMap<UpdateProductRequestDto, Product>();
+            CreateMap<UpdateProductRequestDto, Product>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
             CreateMap<UpdateCategoryRequestDto, Category>();
 
             CreateMap<User, UserResponseDto>();

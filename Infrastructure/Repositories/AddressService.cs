@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using backend.Application.DTOs.Addresses;
+using backend.Application.DTOs.CardItem;
 using backend.Application.Services;
 using backend.Domain.Entities;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using YirmibesYazilim.Framework.Models.Responses;
 
@@ -31,9 +33,9 @@ namespace backend.Infrastructure.Repositories
             return Response<NoContent>.Success(HttpStatusCode.OK, "Silme Başarılı!");
         }
 
-        public async Task<Response<IEnumerable<GetAddressesResponseDto>>> GetAddressesAllAsync()
+        public async Task<Response<IEnumerable<GetAddressesResponseDto>>> GetAddressesAllByUserIdAsync(int userId)
         {
-            var addresses = await _service.GetAllAsync();
+            var addresses = await _service.Query().Where(c => c.UserId == userId).ToListAsync();
             var response = _mapper.Map<IEnumerable<Address>, IEnumerable<GetAddressesResponseDto>>(addresses);
             return Response<IEnumerable<GetAddressesResponseDto>>.Success(response, HttpStatusCode.OK, "Başarılı!");
         }

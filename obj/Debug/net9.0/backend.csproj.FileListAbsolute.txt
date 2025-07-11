@@ -360,3 +360,7 @@ C:\Users\alpay\source\repos\backend\obj\Debug\net9.0\refint\backend.dll
 C:\Users\alpay\source\repos\backend\obj\Debug\net9.0\backend.pdb
 C:\Users\alpay\source\repos\backend\obj\Debug\net9.0\backend.genruntimeconfig.cache
 C:\Users\alpay\source\repos\backend\obj\Debug\net9.0\ref\backend.dll
+C:\Users\alpay\source\repos\backend\bin\Debug\net9.0\Serilog.dll
+C:\Users\alpay\source\repos\backend\bin\Debug\net9.0\Azure.Storage.Blobs.dll
+C:\Users\alpay\source\repos\backend\bin\Debug\net9.0\Azure.Storage.Common.dll
+C:\Users\alpay\source\repos\backend\bin\Debug\net9.0\System.IO.Hashing.dll
