@@ -8,5 +8,6 @@ namespace backend.Application.Services
     {
         public AccessTokenResponseDto GenerateToken(IEnumerable<Claim> claim);
         public RefreshTokenResponseDto GenerateRefreshToken();
+        public string GenerateEmailConfirmToken(int userId);
     }
 }

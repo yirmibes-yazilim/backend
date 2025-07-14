@@ -37,6 +37,11 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<NoContent>> DeleteCardItemAsync(int cardItemId)
         {
+            var cardItem = await _service.GetByIdAsync(cardItemId);
+            if (cardItem == null)
+            {
+                return Response<NoContent>.Fail("Silinecek ürün bulunamadı.", HttpStatusCode.BadRequest);
+            }
             await _service.DeleteAsync(cardItemId);
             return Response<NoContent>.Success(HttpStatusCode.OK, "Silme Başarılı!");
         }

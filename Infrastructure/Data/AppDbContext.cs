@@ -22,6 +22,7 @@ namespace backend.Infrastructure.Data
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
+        public DbSet<EmailVerificationToken> EmailVerificationTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,6 +84,12 @@ namespace backend.Infrastructure.Data
                 .HasMany(p => p.FavoriteProducts)
                 .WithOne(fp => fp.Product)
                 .HasForeignKey(fp => fp.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EmailVerificationToken>()
+                .HasOne(e => e.User)
+                .WithMany(u => u.EmailVerificationTokens)
+                .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
 

@@ -14,8 +14,5 @@ namespace backend.Application.Services
         Task<Response<NoContent>> DeleteProductAsync(int productId);
         Task<Response<IEnumerable<GetProductResponseDto>>> GetProductAllAsync(ProductFilter filter);
         Task<bool> IsProductNameExist(string name);
-        Task<Response<IEnumerable<GetProductResponseDto>>> GetProductByCategoryAsync(int categoryId);
-        Task<Response<IEnumerable<GetProductResponseDto>>> GetProductByNameAsync(string name);
-        Task<Response<IEnumerable<GetProductResponseDto>>> GetProductByPriceRange(int minPrice, int maxPrice);
     }
 }

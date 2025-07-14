@@ -11,7 +11,7 @@ namespace backend.Infrastructure.Repositories
             using (var client = new SmtpClient("smtp.gmail.com"))
             {
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("alpaykuzu0@gmail.com", "hcom divw mlbm dtnm sgip");
+                client.Credentials = new NetworkCredential("alpaykuzu0@gmail.com", "");
                 client.Port = 587;
                 client.EnableSsl = true;
                 var mailMessage = new MailMessage

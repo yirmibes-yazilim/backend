@@ -123,33 +123,5 @@ namespace backend.Infrastructure.Repositories
                 return true;
             return false;
         }
-
-        public async Task<Response<IEnumerable<GetProductResponseDto>>> GetProductByCategoryAsync(int categoryId)
-        {
-            var products = await _service.Query().Where(p => p.CategoryId == categoryId).OrderBy(p => p.Name).ToListAsync();
-            if (products == null)
-            {
-                return Response<IEnumerable<GetProductResponseDto>>.Fail("Ürün Yok.", HttpStatusCode.BadRequest);
-            }
-            else
-            {
-                var response = _mapper.Map<IEnumerable<Product>, IEnumerable<GetProductResponseDto>>(products);
-                return Response<IEnumerable<GetProductResponseDto>>.Success(response, HttpStatusCode.OK, "Başarılı!");
-            }
-        }
-
-        public async Task<Response<IEnumerable<GetProductResponseDto>>> GetProductByNameAsync(string name)
-        {
-            var products = await _service.Query().Where(p => p.Name.ToLower().Contains(name.ToLower())).OrderBy(p => p.Name).ToListAsync();
-            var response = _mapper.Map<IEnumerable<Product>, IEnumerable<GetProductResponseDto>>(products);
-            return Response<IEnumerable<GetProductResponseDto>>.Success(response, HttpStatusCode.OK, "Başarılı!");
-        }
-
-        public async Task<Response<IEnumerable<GetProductResponseDto>>> GetProductByPriceRange(int minPrice, int maxPrice)
-        {
-            var products = await _service.Query().Where(p => p.Price>=minPrice && p.Price <= maxPrice).OrderBy(p => p.Price).ToListAsync();
-            var response = _mapper.Map<IEnumerable<Product>, IEnumerable<GetProductResponseDto>>(products);
-            return Response<IEnumerable<GetProductResponseDto>>.Success(response, HttpStatusCode.OK, "Başarılı!");
-        }
     }
 }   

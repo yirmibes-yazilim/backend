@@ -49,22 +49,5 @@ namespace backend.WebAPI.Controllers
         {
             return Ok(await _productService.DeleteProductAsync(id));
         }
-
-        [HttpGet("getByCategory/{id}")]
-        public async Task<IActionResult> GetByCategory(int id)
-        {
-            return Ok(await _productService.GetProductByCategoryAsync(id));
-        }
-
-        [HttpGet("getByName")]
-        public async Task<IActionResult> GetByName(string name)
-        {
-            return Ok(await _productService.GetProductByNameAsync(name));
-        }
-        [HttpGet("getByPrice")]
-        public async Task<IActionResult> GetByPrice(int minPrice, int maxPrice)
-        {
-            return Ok(await _productService.GetProductByPriceRange(minPrice, maxPrice));
-        }
     }
 }

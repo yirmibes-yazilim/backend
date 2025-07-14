@@ -85,6 +85,7 @@ builder.Services.AddScoped<ICardItemService, CardItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddSingleton<IMyLogger, MyLogger>();
 builder.Services.AddScoped<IFavoriteProductService, FavoriteProductService>();
+builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddSingleton(sp =>
 {
     var cfg = sp.GetRequiredService<IConfiguration>();

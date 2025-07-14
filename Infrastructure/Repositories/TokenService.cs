@@ -1,10 +1,13 @@
 ﻿using backend.Application.DTOs.Token;
 using backend.Application.Services;
 using backend.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace backend.Infrastructure.Repositories
 {
@@ -46,6 +49,12 @@ namespace backend.Infrastructure.Repositories
                 RefreshTokenExpTime = DateTime.Now.AddDays(refreshTokenDays)
             };
             return refreshToken;
+        }
+
+        public string GenerateEmailConfirmToken(int userId)
+        {
+            var code = RandomNumberGenerator.GetInt32(100_000, 999_999).ToString(); 
+            return code;
         }
     }
 }

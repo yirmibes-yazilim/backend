@@ -81,6 +81,58 @@
   },
   {
     "ContainingType": "backend.WebAPI.Controllers.AuthController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Auth/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "backend.Application.DTOs.Auth.ChangePasswordRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.AuthController",
+    "Method": "EmailSendConfirmToken",
+    "RelativePath": "api/Auth/email-send-confirm-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",
@@ -143,6 +195,37 @@
         "Name": "req",
         "Type": "backend.Application.DTOs.Auth.RegisterRequestDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.AuthController",
+    "Method": "VerifyEmailConfirmToken",
+    "RelativePath": "api/Auth/verify-email-confirm-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "confirmationToken",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -351,13 +434,13 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.FavoriteProductsController",
     "Method": "List",
-    "RelativePath": "api/FavoriteProducts/list/{id}",
+    "RelativePath": "api/FavoriteProducts/list/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "userId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -507,22 +590,6 @@
   },
   {
     "ContainingType": "backend.WebAPI.Controllers.ProductsController",
-    "Method": "GetByCategory",
-    "RelativePath": "api/Products/getByCategory/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "backend.WebAPI.Controllers.ProductsController",
     "Method": "GetById",
     "RelativePath": "api/Products/getById/{id}",
     "HttpMethod": "GET",
@@ -533,43 +600,6 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "backend.WebAPI.Controllers.ProductsController",
-    "Method": "GetByName",
-    "RelativePath": "api/Products/getByName",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "name",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "backend.WebAPI.Controllers.ProductsController",
-    "Method": "GetByPrice",
-    "RelativePath": "api/Products/getByPrice",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "minPrice",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "maxPrice",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []

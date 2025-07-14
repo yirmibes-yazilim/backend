@@ -7,6 +7,7 @@ using backend.Application.Services;
 using backend.Domain.Entities;
 using backend.Infrastructure.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,13 +24,17 @@ namespace backend.Infrastructure.Repositories
         private readonly IUserRoleService _roleService;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
-        public AuthService(IMapper mapper, IService<User> userService, IUserRoleService roleService, ITokenService tokenService, IService<RefreshToken> refreshTokenService)
+        private readonly IMailService _mailService;
+        private readonly IService<EmailVerificationToken> _verifyService;
+        public AuthService(IMapper mapper, IService<User> userService, IUserRoleService roleService, ITokenService tokenService, IService<RefreshToken> refreshTokenService, IMailService mailService, IService<EmailVerificationToken> verifyService)
         {
             _mapper = mapper;
             _userService = userService;
             _roleService = roleService;
             _tokenService = tokenService;
             _refreshTokenService = refreshTokenService;
+            _mailService = mailService;
+            _verifyService = verifyService;
         }
 
         public async Task<Response<LoginResponseDto>> LoginAsync(LoginRequestDto loginRequestDto)
@@ -134,6 +139,60 @@ namespace backend.Infrastructure.Repositories
             };
 
             return Response<TokensResponseDto>.Success(tokensResponse, HttpStatusCode.OK, "Token güncellendi");
+        }
+
+        public async Task<Response<NoContent>> EmailSendConfirmTokenAsync(int id)
+        {
+            var user = await _userService.GetFirstOrDefaultAsync(u => u.Id == id);
+            if (user != null)
+            {
+                var confirmToken = _tokenService.GenerateEmailConfirmToken(user.Id);
+                var token = new EmailVerificationToken
+                {
+                    UserId = user.Id,
+                    Code = confirmToken,
+                    ExpiresAt = DateTime.UtcNow.AddMinutes(10)
+                };
+                await _verifyService.AddAsync(token);
+
+                await _mailService.SendEmailAsync(user.Email, "Verify Email", confirmToken);
+                return Response<NoContent>.Success(HttpStatusCode.OK, "Email doğrulama kodu gönderildi");
+            }
+            else               
+                return Response<NoContent>.Fail("Kayıtlı mail bulunamadı", HttpStatusCode.NotFound); 
+        }
+
+        public async Task<Response<NoContent>> VerifyEmailConfirmTokenAsync(int userId, string confirmationToken)
+        {
+            var token = await _verifyService
+                            .GetFirstOrDefaultAsync(t =>
+                                t.UserId == userId &&
+                                t.Code == confirmationToken &&
+                                t.IsUsed == false &&
+                                t.ExpiresAt > DateTime.UtcNow);
+
+            if (token is null)
+                return Response<NoContent>.Fail("Geçersiz veya süresi dolmuş token", HttpStatusCode.BadRequest);
+
+            token.IsUsed = true;
+            var account = await _userService.GetByIdAsync(userId);
+            account.IsEmailConfirmed = true;
+
+            await _userService.UpdateAsync(account);
+            await _verifyService.DeleteAsync(token.Id);
+            return Response<NoContent>.Success(HttpStatusCode.OK, "Email doğrulandı");
+        }
+
+        public async Task<Response<NoContent>> ChangePassword(ChangePasswordRequestDto changePasswordRequest)
+        {
+            var user = await _userService.GetByIdAsync(changePasswordRequest.UserId);
+            if (user == null)
+                return Response<NoContent>.Fail("Kullanıcı bulunamadı", HttpStatusCode.NotFound);
+            if (!BCrypt.Net.BCrypt.Verify(changePasswordRequest.OldPassword, user.PasswordHash))
+                return Response<NoContent>.Fail("Eski şifre yanlış", HttpStatusCode.BadRequest);
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(changePasswordRequest.NewPassword);
+            await _userService.UpdateAsync(user);
+            return Response<NoContent>.Success(HttpStatusCode.OK, "Şifre değiştirildi");
         }
     }
 }

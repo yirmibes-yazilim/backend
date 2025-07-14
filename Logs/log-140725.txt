@@ -38,3 +38,23 @@
 11:59:39 [INFO] Response api/FavoriteProducts/removeFavorite 200 (354ms)
 11:59:44 [INFO] Request api/FavoriteProducts/list/10
 11:59:44 [INFO] Response api/FavoriteProducts/list/10 200 (42ms)
+13:59:40 [INFO] Request api/Auth/register
+13:59:43 [INFO] Response api/Auth/register 200 (3400ms)
+14:00:07 [INFO] Request api/Auth/email-send-confirm-token
+14:02:04 [INFO] Request api/Auth/email-send-confirm-token
+14:02:08 [INFO] Response api/Auth/email-send-confirm-token 200 (4467ms)
+14:02:37 [INFO] Request api/Auth/verify-email-confirm-token
+14:02:37 [INFO] Response api/Auth/verify-email-confirm-token 200 (276ms)
+14:03:00 [INFO] Request api/Auth/email-send-confirm-token
+14:28:31 [INFO] Request api/Auth/login
+14:28:34 [INFO] Response api/Auth/login 200 (3444ms)
+14:29:00 [INFO] Request api/Auth/change-password
+14:29:01 [INFO] Response api/Auth/change-password 200 (929ms)
+14:29:06 [INFO] Request api/Auth/change-password
+14:29:06 [INFO] Response api/Auth/change-password 200 (239ms)
+14:29:13 [INFO] Request api/Auth/login
+14:29:14 [INFO] Response api/Auth/login 200 (251ms)
+14:30:49 [INFO] Request api/Auth/change-password
+14:30:53 [INFO] Response api/Auth/change-password 200 (3968ms)
+14:31:02 [INFO] Request api/Auth/login
+14:31:02 [INFO] Response api/Auth/login 200 (459ms)

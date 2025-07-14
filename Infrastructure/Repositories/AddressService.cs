@@ -29,6 +29,11 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<NoContent>> DeleteAddressesAsync(int addressId)
         {
+            var address = await _service.GetByIdAsync(addressId);
+            if (address == null)
+            {
+                return Response<NoContent>.Fail("Silinecek adres bulunamadı.", HttpStatusCode.BadRequest);
+            }
             await _service.DeleteAsync(addressId);
             return Response<NoContent>.Success(HttpStatusCode.OK, "Silme Başarılı!");
         }
@@ -36,6 +41,10 @@ namespace backend.Infrastructure.Repositories
         public async Task<Response<IEnumerable<GetAddressesResponseDto>>> GetAddressesAllByUserIdAsync(int userId)
         {
             var addresses = await _service.Query().Where(c => c.UserId == userId).ToListAsync();
+            if (addresses == null || !addresses.Any())
+            {
+                return Response<IEnumerable<GetAddressesResponseDto>>.Fail("Adres bulunamadı.", HttpStatusCode.NotFound);
+            }
             var response = _mapper.Map<IEnumerable<Address>, IEnumerable<GetAddressesResponseDto>>(addresses);
             return Response<IEnumerable<GetAddressesResponseDto>>.Success(response, HttpStatusCode.OK, "Başarılı!");
         }
