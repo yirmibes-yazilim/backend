@@ -73,6 +73,11 @@ namespace backend.Infrastructure.Repositories
             if (filter.MaxPrice != null)
                 query = query.Where(p => p.Price <= filter.MaxPrice);
 
+            if (filter.OrderByPriceAscending == true)
+                query = query.OrderBy(p => p.Price);
+            else if (filter.OrderByPriceAscending == false)
+                query = query.OrderByDescending(p => p.Price);            
+
             var products = await query.ToListAsync();
             var response = _mapper.Map<IEnumerable<Product>, IEnumerable<GetProductResponseDto>>(products);
             return Response<IEnumerable<GetProductResponseDto>>.Success(response, HttpStatusCode.OK, "Başarılı!");

@@ -33,12 +33,18 @@
   },
   {
     "ContainingType": "backend.WebAPI.Controllers.AddressesController",
-    "Method": "GetAll",
-    "RelativePath": "api/Addresses/getAll",
+    "Method": "GetAllByUserId",
+    "RelativePath": "api/Addresses/getAllByUserId/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -327,6 +333,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "backend.WebAPI.Controllers.FavoriteProductsController",
+    "Method": "Create",
+    "RelativePath": "api/FavoriteProducts/addFavorite",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "backend.Application.DTOs.FavoriteProduct.CreateFavoriteProductRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.FavoriteProductsController",
+    "Method": "List",
+    "RelativePath": "api/FavoriteProducts/list/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.FavoriteProductsController",
+    "Method": "RemoveFavorite",
+    "RelativePath": "api/FavoriteProducts/removeFavorite",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "backend.Application.DTOs.FavoriteProduct.RemoveFavoriteProductRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "backend.WebAPI.Controllers.OrdersController",
     "Method": "ConfrimCard",
     "RelativePath": "api/Orders/confirmCard/{userId}",
@@ -453,16 +507,6 @@
   },
   {
     "ContainingType": "backend.WebAPI.Controllers.ProductsController",
-    "Method": "GetAll",
-    "RelativePath": "api/Products/getAll",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "backend.WebAPI.Controllers.ProductsController",
     "Method": "GetByCategory",
     "RelativePath": "api/Products/getByCategory/{id}",
     "HttpMethod": "GET",
@@ -525,6 +569,42 @@
       {
         "Name": "maxPrice",
         "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.ProductsController",
+    "Method": "List",
+    "RelativePath": "api/Products/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CategoryId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MinPrice",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "MaxPrice",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderByPriceAscending",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],

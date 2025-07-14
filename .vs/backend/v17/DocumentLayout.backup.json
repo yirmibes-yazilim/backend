@@ -3,52 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\alpay\\source\\repos\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\webapi\\controllers\\favoriteproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:webapi\\controllers\\favoriteproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\infrastructure\\repositories\\favoriteproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:infrastructure\\repositories\\favoriteproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\infrastructure\\repositories\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:infrastructure\\repositories\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\dtos\\favoriteproduct\\createfavoriteproductrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\dtos\\favoriteproduct\\createfavoriteproductrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\services\\ifavoriteproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\services\\ifavoriteproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\infrastructure\\repositories\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:infrastructure\\repositories\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\dtos\\filter\\productfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\dtos\\filter\\productfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\webapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:webapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\infrastructure\\repositories\\blobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:infrastructure\\repositories\\blobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\webapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:webapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\infrastructure\\configurations\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:infrastructure\\configurations\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\dtos\\product\\getproductresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\dtos\\product\\getproductresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\domain\\entities\\favoriteproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:domain\\entities\\favoriteproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\dtos\\product\\updateproductrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\dtos\\product\\updateproductrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\dtos\\product\\createproductrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\dtos\\product\\createproductrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|c:\\users\\alpay\\source\\repos\\backend\\application\\services\\icarditemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|backend.csproj|solutionrelative:application\\services\\icarditemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,67 +70,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\Services\\IProductService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\IProductService.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\Services\\IProductService.cs",
-              "RelativeToolTip": "Application\\Services\\IProductService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABkAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T14:15:33.293Z",
+              "WhenOpened": "2025-07-14T08:45:12.32Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductFilter.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Filter\\ProductFilter.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Filter\\ProductFilter.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Filter\\ProductFilter.cs",
-              "RelativeToolTip": "Application\\DTOs\\Filter\\ProductFilter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T13:49:01.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\ProductService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ProductService.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\ProductService.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\ProductService.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAYwA4AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:08:43.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\WebAPI\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\WebAPI\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "WebAPI\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAUwBIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:15:44.384Z",
+              "WhenOpened": "2025-07-14T08:41:04.1Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-07-10T11:39:59.632Z",
+              "DocumentIndex": 0,
+              "Title": "FavoriteProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\WebAPI\\Controllers\\FavoriteProductsController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\FavoriteProductsController.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\WebAPI\\Controllers\\FavoriteProductsController.cs*",
+              "RelativeToolTip": "WebAPI\\Controllers\\FavoriteProductsController.cs*",
+              "ViewState": "AgIAABYAAAAAAAAAAAAawCUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T08:40:30.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\Service.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\Service.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\Service.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\Service.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwDQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T08:31:28.087Z",
               "EditorCaption": ""
             },
             {
@@ -145,87 +128,87 @@
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\AutoMapperProfile.cs",
               "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Configurations\\AutoMapperProfile.cs",
               "RelativeToolTip": "Infrastructure\\Configurations\\AutoMapperProfile.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwD4AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:31:15.538Z",
+              "WhenOpened": "2025-07-14T08:27:33.533Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GetProductResponseDto.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Product\\GetProductResponseDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Product\\GetProductResponseDto.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Product\\GetProductResponseDto.cs",
-              "RelativeToolTip": "Application\\DTOs\\Product\\GetProductResponseDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "CreateFavoriteProductRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\FavoriteProduct\\CreateFavoriteProductRequestDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\FavoriteProduct\\CreateFavoriteProductRequestDto.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\FavoriteProduct\\CreateFavoriteProductRequestDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\FavoriteProduct\\CreateFavoriteProductRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:25:05.109Z",
+              "WhenOpened": "2025-07-14T08:27:10.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UpdateProductRequestDto.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Product\\UpdateProductRequestDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Product\\UpdateProductRequestDto.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Product\\UpdateProductRequestDto.cs",
-              "RelativeToolTip": "Application\\DTOs\\Product\\UpdateProductRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "FavoriteProductService.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\FavoriteProductService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\FavoriteProductService.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\FavoriteProductService.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\FavoriteProductService.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwC8AAABxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:17:44.613Z",
+              "WhenOpened": "2025-07-14T08:24:41.52Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CreateProductRequestDto.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Product\\CreateProductRequestDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Product\\CreateProductRequestDto.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\DTOs\\Product\\CreateProductRequestDto.cs",
-              "RelativeToolTip": "Application\\DTOs\\Product\\CreateProductRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\ProductService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ProductService.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\ProductService.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\ProductService.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAABEAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:17:20.139Z",
+              "WhenOpened": "2025-07-14T08:24:18.039Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "BlobService.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\BlobService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\BlobService.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Infrastructure\\Repositories\\BlobService.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\BlobService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Title": "IFavoriteProductService.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\Services\\IFavoriteProductService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\IFavoriteProductService.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\Services\\IFavoriteProductService.cs",
+              "RelativeToolTip": "Application\\Services\\IFavoriteProductService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T10:57:57.731Z",
+              "WhenOpened": "2025-07-14T08:17:53.447Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Domain\\Entities\\Product.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Product.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Domain\\Entities\\Product.cs",
-              "RelativeToolTip": "Domain\\Entities\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "ICardItemService.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\Services\\ICardItemService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ICardItemService.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Application\\Services\\ICardItemService.cs",
+              "RelativeToolTip": "Application\\Services\\ICardItemService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:06:05.181Z",
+              "WhenOpened": "2025-07-14T08:17:42.562Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAqwFYAAAAjAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "FavoriteProduct.cs",
+              "DocumentMoniker": "C:\\Users\\alpay\\source\\repos\\backend\\Domain\\Entities\\FavoriteProduct.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\FavoriteProduct.cs",
+              "ToolTip": "C:\\Users\\alpay\\source\\repos\\backend\\Domain\\Entities\\FavoriteProduct.cs",
+              "RelativeToolTip": "Domain\\Entities\\FavoriteProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T11:02:51.553Z",
+              "WhenOpened": "2025-07-14T07:49:31.425Z",
               "EditorCaption": ""
             }
           ]

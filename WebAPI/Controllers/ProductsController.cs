@@ -21,7 +21,7 @@ namespace backend.WebAPI.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> List([FromQuery] ProductFilter filter)
         {
-            return Ok(await _productService.GetProductAllAsync());
+            return Ok(await _productService.GetProductAllAsync(filter));
         }
 
         [HttpGet("getById/{id}")]

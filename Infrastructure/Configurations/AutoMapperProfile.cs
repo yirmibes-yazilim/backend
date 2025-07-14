@@ -3,6 +3,7 @@ using backend.Application.DTOs.Addresses;
 using backend.Application.DTOs.Auth;
 using backend.Application.DTOs.CardItem;
 using backend.Application.DTOs.Category;
+using backend.Application.DTOs.FavoriteProduct;
 using backend.Application.DTOs.Order;
 using backend.Application.DTOs.OrderItem;
 using backend.Application.DTOs.Product;
@@ -57,6 +58,9 @@ namespace API.Infrastructure.Profiles
 
             CreateMap<Order, GetOrderResponseDto>();
             CreateMap<OrderItem, GetOrderItemResponseDto>();    
+
+            CreateMap<CreateFavoriteProductRequestDto, FavoriteProduct>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }

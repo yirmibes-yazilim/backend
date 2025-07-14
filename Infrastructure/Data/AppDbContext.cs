@@ -21,6 +21,7 @@ namespace backend.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -70,6 +71,18 @@ namespace backend.Infrastructure.Data
                 .HasMany(u => u.OrderItems)
                 .WithOne(rt => rt.Order)
                 .HasForeignKey(rt => rt.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.FavoriteProducts)
+                .WithOne(fp => fp.User)
+                .HasForeignKey(fp => fp.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.FavoriteProducts)
+                .WithOne(fp => fp.Product)
+                .HasForeignKey(fp => fp.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
 

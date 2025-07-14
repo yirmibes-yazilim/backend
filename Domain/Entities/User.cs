@@ -13,6 +13,7 @@
         public List<Address> Addresses { get; set; }
         public List<CardItem> CardItems { get; set; }
         public List<Order> Orders { get; set; }
+        public List<FavoriteProduct> FavoriteProducts { get; set; }
 
     }
 }

@@ -84,6 +84,7 @@ builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<ICardItemService, CardItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddSingleton<IMyLogger, MyLogger>();
+builder.Services.AddScoped<IFavoriteProductService, FavoriteProductService>();
 builder.Services.AddSingleton(sp =>
 {
     var cfg = sp.GetRequiredService<IConfiguration>();
@@ -106,7 +107,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowAll");
 
-// Middleware olarak loglamas
+app.UseMiddleware<ExceptionHandlerMiddleware>();
+
 app.UseMiddleware<LogMiddleware>();
 
 app.UseAuthentication();
