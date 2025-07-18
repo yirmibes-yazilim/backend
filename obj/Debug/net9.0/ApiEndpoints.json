@@ -65,6 +65,27 @@
   },
   {
     "ContainingType": "backend.WebAPI.Controllers.AddressesController",
+    "Method": "SetDefault",
+    "RelativePath": "api/Addresses/setDefault/{userId}/{addressId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "addressId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.AddressesController",
     "Method": "Update",
     "RelativePath": "api/Addresses/update",
     "HttpMethod": "PUT",
@@ -74,6 +95,22 @@
       {
         "Name": "dto",
         "Type": "backend.Application.DTOs.Addresses.UpdateAddressesRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.AdminController",
+    "Method": "Login",
+    "RelativePath": "api/Admin/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequestDto",
+        "Type": "backend.Application.DTOs.Auth.LoginRequestDto",
         "IsRequired": true
       }
     ],
@@ -108,7 +145,7 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.AuthController",
     "Method": "EmailSendConfirmToken",
-    "RelativePath": "api/Auth/email-send-confirm-token",
+    "RelativePath": "api/Auth/email-send-confirm-token/{userId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -116,7 +153,7 @@
       {
         "Name": "userId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -682,6 +719,96 @@
         "Name": "Image",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
+    "Method": "AddRatingAsync",
+    "RelativePath": "api/RatingProducts/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createRatingProductRequestDto",
+        "Type": "backend.Application.DTOs.RatingProduct.CreateRatingProductRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
+    "Method": "DeleteRatingAsync",
+    "RelativePath": "api/RatingProducts/deleteRating/{productId}/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
+    "Method": "GetRatingsByProductAsync",
+    "RelativePath": "api/RatingProducts/getRatingsByProduct/{productId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
+    "Method": "GetRatingsByUserAsync",
+    "RelativePath": "api/RatingProducts/getRatingsByUser/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
+    "Method": "GetUserRatingAsync",
+    "RelativePath": "api/RatingProducts/getUserRating/{productId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

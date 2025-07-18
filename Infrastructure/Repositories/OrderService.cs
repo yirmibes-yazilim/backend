@@ -65,6 +65,7 @@ namespace backend.Infrastructure.Repositories
         public async Task<Response<IEnumerable<GetOrderResponseDto>>> GetAllByUserId(int userId)
         {
             var orders = await _orderService.Query()
+              .Include(o => o.OrderItems)
               .Where(c => c.UserId == userId)
               .ToListAsync();
             var response = _mapper.Map<IEnumerable<Order>, IEnumerable<GetOrderResponseDto>>(orders);
@@ -73,7 +74,9 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<GetOrderResponseDto>> GetOrderById(int orderId)
         {
-            var order = await _orderService.GetByIdAsync(orderId);
+            var order = await _orderService.Query()
+              .Include(o => o.OrderItems)
+              .FirstOrDefaultAsync(o => o.Id == orderId);
             if (order == null)
             {
                 return Response<GetOrderResponseDto>.Fail("Ürün Yok.", HttpStatusCode.BadRequest);

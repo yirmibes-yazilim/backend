@@ -12,5 +12,6 @@
         public Category Category { get; set; }
         public List<CardItem> CardItems { get; set; }
         public List<FavoriteProduct> FavoriteProducts { get; set; }
+        public List<RatingProduct> RatingProducts { get; set; }
     }
 }

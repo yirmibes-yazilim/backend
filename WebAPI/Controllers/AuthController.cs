@@ -32,7 +32,7 @@ namespace backend.WebAPI.Controllers
         {
             return Ok(await _authService.RefreshTokenAsync(tokenRequest));
         }
-        [HttpPost("email-send-confirm-token")]
+        [HttpPost("email-send-confirm-token/{userId}")]
         public async Task<ActionResult<Response<NoContent>>> EmailSendConfirmToken(int userId)
         {
             return Ok(await _authService.EmailSendConfirmTokenAsync(userId));

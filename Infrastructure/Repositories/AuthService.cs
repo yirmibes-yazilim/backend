@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using backend.Application.DTOs.Auth;
 using backend.Application.DTOs.Token;
 using backend.Application.DTOs.UserRole;
 using backend.Application.Services;
 using backend.Domain.Entities;
-using backend.Infrastructure.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
@@ -44,21 +40,21 @@ namespace backend.Infrastructure.Repositories
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginRequestDto.Password, user.PasswordHash))
                 return Response<LoginResponseDto>.Fail("Giriş başarısız", HttpStatusCode.Unauthorized);
 
-            var role = await _roleService.GetUserRoleAsync(user.Id);
-            var claims = new[]
+            var rolesResult = await _roleService.GetUserRoleAsync(user.Id);
+            var roles = rolesResult.Data ?? new List<GetUserRoleResponse>();
+
+            var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, role.Data.Role),
                 new Claim(ClaimTypes.Email, user.Email)
             };
-            var accessTokenDto = _tokenService.GenerateToken(claims);
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.Role)));
 
+            var accessTokenDto = _tokenService.GenerateToken(claims);
             var refreshTokenDto = _tokenService.GenerateRefreshToken();
 
             var existingToken = await _refreshTokenService.GetFirstOrDefaultAsync(x => x.UserId == user.Id);
-
             if (existingToken != null)
             {
                 existingToken.Token = refreshTokenDto.RefreshToken;
@@ -77,6 +73,8 @@ namespace backend.Infrastructure.Repositories
             }
 
             var userResponse = _mapper.Map<User, UserResponseDto>(user);
+            userResponse.Roles = roles.Select(r => r.Role).ToList(); // ← İstersen frontend'e gönder
+
             var loginResponse = new LoginResponseDto
             {
                 UserInfo = userResponse,
@@ -86,6 +84,7 @@ namespace backend.Infrastructure.Repositories
 
             return Response<LoginResponseDto>.Success(loginResponse, HttpStatusCode.OK, "Giriş başarılı");
         }
+
 
         public async Task<Response<NoContent>> RegisterAsync(RegisterRequestDto registerRequest)
         {
@@ -111,27 +110,34 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<TokensResponseDto>> RefreshTokenAsync(RefreshTokenRequestDto tokenRequest)
         {
-            var existingToken = await _refreshTokenService.Query().Include(x => x.User).FirstOrDefaultAsync(x => x.Token == tokenRequest.RefreshToken);
-            if (existingToken == null || existingToken?.ExpirationDate < DateTime.UtcNow)
+            var existingToken = await _refreshTokenService.Query()
+                .Include(x => x.User)
+                .FirstOrDefaultAsync(x => x.Token == tokenRequest.RefreshToken);
+
+            if (existingToken == null || existingToken.ExpirationDate < DateTime.UtcNow)
             {
                 return Response<TokensResponseDto>.Fail("Geçersiz veya tarihi geçmiş token!", HttpStatusCode.Unauthorized);
             }
-            var role = await _roleService.GetUserRoleAsync(existingToken.User.Id);
-            var claims = new[]
+
+            var rolesResult = await _roleService.GetUserRoleAsync(existingToken.User.Id);
+            var roles = rolesResult.Data ?? new List<GetUserRoleResponse>();
+
+            var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, existingToken.User.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, existingToken.User.Id.ToString()),
                 new Claim(ClaimTypes.Name, existingToken.User.Username),
-                new Claim(ClaimTypes.Email, existingToken.User.Email),
-                new Claim(ClaimTypes.Role, role.Data.Role),
                 new Claim(ClaimTypes.Email, existingToken.User.Email)
             };
+
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.Role)));
+
             var newGeneratedTokenDto = _tokenService.GenerateToken(claims);
             var newGeneratedRefreshTokenDto = _tokenService.GenerateRefreshToken();
-
 
             existingToken.Token = newGeneratedRefreshTokenDto.RefreshToken;
             existingToken.ExpirationDate = newGeneratedRefreshTokenDto.RefreshTokenExpTime;
             await _refreshTokenService.UpdateAsync(existingToken);
+
             var tokensResponse = new TokensResponseDto
             {
                 AccessToken = newGeneratedTokenDto,

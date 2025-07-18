@@ -1,4 +1,5 @@
 ﻿using backend.Application.DTOs.Product;
+using backend.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Linq.Expressions;
 using YirmibesYazilim.Framework.Models.Responses;

@@ -178,11 +178,17 @@ namespace backend.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.Property<int>("TotalAmount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -262,6 +268,42 @@ namespace backend.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("backend.Domain.Entities.RatingProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RatingProducts");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.RefreshToken", b =>
@@ -454,6 +496,25 @@ namespace backend.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("backend.Domain.Entities.RatingProduct", b =>
+                {
+                    b.HasOne("backend.Domain.Entities.Product", "Product")
+                        .WithMany("RatingProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Domain.Entities.User", "User")
+                        .WithMany("RatingProducts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("backend.Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("backend.Domain.Entities.User", "User")
@@ -491,6 +552,8 @@ namespace backend.Migrations
                     b.Navigation("CardItems");
 
                     b.Navigation("FavoriteProducts");
+
+                    b.Navigation("RatingProducts");
                 });
 
             modelBuilder.Entity("backend.Domain.Entities.User", b =>
@@ -504,6 +567,8 @@ namespace backend.Migrations
                     b.Navigation("FavoriteProducts");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("RatingProducts");
 
                     b.Navigation("RefreshTokens");
 

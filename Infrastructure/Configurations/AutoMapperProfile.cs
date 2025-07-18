@@ -7,6 +7,7 @@ using backend.Application.DTOs.FavoriteProduct;
 using backend.Application.DTOs.Order;
 using backend.Application.DTOs.OrderItem;
 using backend.Application.DTOs.Product;
+using backend.Application.DTOs.RatingProduct;
 using backend.Application.DTOs.UserRole;
 using backend.Domain.Entities;
 using Microsoft.AspNetCore.Identity.Data;
@@ -47,10 +48,12 @@ namespace API.Infrastructure.Profiles
             CreateMap<UserRole, GetUserRoleResponse>();
 
             CreateMap<CreateAddressesRequestDto, Address>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.IsDefault, opt => opt.Ignore());
 
             CreateMap<Address, GetAddressesResponseDto>();
-            CreateMap<UpdateAddressesRequestDto, Address>();
+            CreateMap<UpdateAddressesRequestDto, Address>()
+                .ForMember(dest => dest.IsDefault, opt => opt.Ignore());
 
             CreateMap<CreateCardItemRequestDto, CardItem>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
@@ -60,6 +63,11 @@ namespace API.Infrastructure.Profiles
             CreateMap<OrderItem, GetOrderItemResponseDto>();    
 
             CreateMap<CreateFavoriteProductRequestDto, FavoriteProduct>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            CreateMap<RatingProduct, GetRatingProductResponseDto> ();
+            CreateMap<UpdateRatingProductRequest, RatingProduct>();
+            CreateMap<CreateRatingProductRequestDto, RatingProduct>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }

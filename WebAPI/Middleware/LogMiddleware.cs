@@ -19,9 +19,9 @@ namespace backend.WebAPI.Middleware
         public async Task InvokeAsync(HttpContext context)
         {
             var stopwatch = Stopwatch.StartNew();
-
+            var ip = context.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip";
             var path = context.Request.Path.Value?.TrimStart('/') ?? "unknown path";
-            _logger.LogInformation($"Request {path}");
+            _logger.LogInformation($"IP: {ip} Request {path}");
 
             await _next(context);
 

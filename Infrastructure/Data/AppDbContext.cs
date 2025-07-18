@@ -23,6 +23,7 @@ namespace backend.Infrastructure.Data
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
         public DbSet<EmailVerificationToken> EmailVerificationTokens { get; set; }
+        public DbSet<RatingProduct> RatingProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -91,6 +92,18 @@ namespace backend.Infrastructure.Data
                 .WithMany(u => u.EmailVerificationTokens)
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.RatingProducts)
+                .WithOne(rp => rp.User)
+                .HasForeignKey(rp => rp.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.RatingProducts)
+                .WithOne(rp => rp.Product)
+                .HasForeignKey(rp => rp.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public override int SaveChanges()
@@ -116,10 +129,10 @@ namespace backend.Infrastructure.Data
                 var entity = (BaseEntity)entry.Entity;
                 if (entry.State == EntityState.Added)
                 {
-                    entity.CreatedAt = DateTime.UtcNow;
+                    entity.CreatedAt = DateTime.Now;
                 }
 
-                entity.UpdatedAt = DateTime.UtcNow;
+                entity.UpdatedAt = DateTime.Now;
             }
         }
     }

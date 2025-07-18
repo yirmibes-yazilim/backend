@@ -1,6 +1,7 @@
 ﻿using backend.Application.DTOs.Addresses;
 using backend.Application.DTOs.Category;
 using backend.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace backend.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AddressesController : ControllerBase
     {
         private readonly IAddressService _addressesService;
@@ -45,6 +47,11 @@ namespace backend.WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await _addressesService.DeleteAddressesAsync(id));
+        }
+        [HttpPost("setDefault/{userId}/{addressId}")]
+        public async Task<IActionResult> SetDefault(int userId, int addressId)
+        {
+            return Ok(await _addressesService.SetAddressDefaultAsync(userId, addressId));
         }
     }
 }

@@ -1,22 +1,25 @@
 using API.Infrastructure.Profiles;
 using Azure.Storage.Blobs;
 using backend.Application.DTOs.Auth;
-using backend.Application.DTOs.Category;
-using backend.Application.DTOs.Product;
+using backend.Application.DTOs.UserRole;
 using backend.Application.Services;
 using backend.Application.Validator;
 using backend.Domain.Entities;
 using backend.Infrastructure.Data;
 using backend.Infrastructure.Repositories;
 using backend.Loger;
+using backend.WebAPI.Extensions;
 using backend.WebAPI.Middleware;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,40 +66,68 @@ builder.WebHost.ConfigureKestrel(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-
-builder.Services.AddFluentValidationAutoValidation(); 
-builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
-
-
-builder.Services.AddScoped<DbContext, AppDbContext>();
-builder.Services.AddScoped<IUnitofWork, UnitofWork>();
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IUserRoleService, UserRoleService>();
-builder.Services.AddScoped<IAddressService, AddressService>();
-builder.Services.AddScoped<ICardItemService, CardItemService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddSingleton<IMyLogger, MyLogger>();
-builder.Services.AddScoped<IFavoriteProductService, FavoriteProductService>();
-builder.Services.AddScoped<IMailService, MailService>();
-builder.Services.AddSingleton(sp =>
+builder.Services.AddSwaggerGen(c =>
 {
-    var cfg = sp.GetRequiredService<IConfiguration>();
-    var conn = cfg["AzureBlobStorage:ConnectionString"];
-    var container = cfg["AzureBlobStorage:ContainerName"];
-    return new BlobContainerClient(conn, container);
-});
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "E-Commerce API", Version = "v1" });
 
-builder.Services.AddScoped<IBlobService, BlobService>();
+    // JWT Authentication için taným
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddCustomServices();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var service = scope.ServiceProvider.GetRequiredService<IService<User>>();
+    var authService = scope.ServiceProvider.GetRequiredService<IAuthService>();
+    var roleService = scope.ServiceProvider.GetRequiredService<IUserRoleService>();
+
+    var adminEmail = "admin@admin.com";
+    var adminUser = await service.GetFirstOrDefaultAsync(u => u.Email == adminEmail);
+
+    if (adminUser == null)
+    {
+        await authService.RegisterAsync(new RegisterRequestDto
+        {
+            Username = "admin",
+            FirstName = "admin",
+            LastName = "admin",
+            Email = adminEmail,
+            Password = "Admin1234!",
+        });
+        var admin = await service.GetFirstOrDefaultAsync(u => u.Email == adminEmail);
+        await roleService.AddUserRoleAsync(new CreateUserRoleRequest
+        {
+            UserId = admin.Id,
+            Role = "Admin"
+        });
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -116,6 +147,8 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseRateLimiter();
+
+app.MapControllers().RequireRateLimiting("IpBasedPolicy");
 
 app.Run();

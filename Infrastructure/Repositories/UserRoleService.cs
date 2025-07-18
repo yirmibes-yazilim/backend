@@ -4,6 +4,7 @@ using backend.Application.Services;
 using backend.Domain.Entities;
 using backend.Infrastructure.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using YirmibesYazilim.Framework.Models.Responses;
 
@@ -46,17 +47,18 @@ namespace backend.Infrastructure.Repositories
             return Response<List<GetUserRoleResponse>>.Success(response, HttpStatusCode.OK, "Başarılı!");
         }
 
-        public async Task<Response<GetUserRoleResponse>> GetUserRoleAsync(int userId)
+        public async Task<Response<List<GetUserRoleResponse>>> GetUserRoleAsync(int userId)
         {
-            var userRole = await _service.GetFirstOrDefaultAsync(x => x.UserId == userId);
-            if (userRole == null)
+            var userRoles = await _service.Query().Where(x => x.UserId == userId).ToListAsync();
+
+            if (userRoles == null)
             {
-                return Response<GetUserRoleResponse>.Fail("Kullanıcı Yok.", HttpStatusCode.BadRequest);
+                return Response<List<GetUserRoleResponse>>.Fail("Kullanıcı Yok.", HttpStatusCode.BadRequest);
             }
             else
             {
-                var response = _mapper.Map<UserRole, GetUserRoleResponse>(userRole);
-                return Response<GetUserRoleResponse>.Success(response, HttpStatusCode.OK, "Başarılı!");
+                var response = _mapper.Map<List<UserRole>, List<GetUserRoleResponse>>(userRoles);
+                return Response<List<GetUserRoleResponse>>.Success(response, HttpStatusCode.OK, "Başarılı!");
             }
         }
 

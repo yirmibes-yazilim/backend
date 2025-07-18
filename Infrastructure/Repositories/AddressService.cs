@@ -5,8 +5,11 @@ using backend.Application.Services;
 using backend.Domain.Entities;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security.Claims;
 using YirmibesYazilim.Framework.Models.Responses;
+using backend.Infrastructure.Extensions;
 
 namespace backend.Infrastructure.Repositories
 {
@@ -14,14 +17,21 @@ namespace backend.Infrastructure.Repositories
     {
         private readonly IMapper _mapper;
         private readonly IService<Address> _service;
-        public AddressService(IMapper mapper, IService<Address> service = null)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AddressService(IMapper mapper, IService<Address> service = null, IHttpContextAccessor httpContextAccessor = null)
         {
             _mapper = mapper;
             _service = service;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Response<NoContent>> AddAddressesAsync(CreateAddressesRequestDto category)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if(userId != category.UserId)
+            {
+                return Response<NoContent>.Fail("Bu adres sizin değil.", HttpStatusCode.BadRequest);
+            }
             var newAddress = _mapper.Map<CreateAddressesRequestDto, Address>(category);
             await _service.AddAsync(newAddress);
             return Response<NoContent>.Success(HttpStatusCode.OK, "Adres Ekleme Başarılı!");
@@ -29,6 +39,11 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<NoContent>> DeleteAddressesAsync(int addressId)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if(await _service.Query().AnyAsync(c => c.Id == addressId && c.UserId == userId))
+            {
+                return Response<NoContent>.Fail("Bu adres sizin değil.", HttpStatusCode.BadRequest);
+            }
             var address = await _service.GetByIdAsync(addressId);
             if (address == null)
             {
@@ -40,6 +55,11 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<IEnumerable<GetAddressesResponseDto>>> GetAddressesAllByUserIdAsync(int userId)
         {
+            var claimUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (claimUserId != userId)
+            {
+                return Response<IEnumerable<GetAddressesResponseDto>>.Fail("Bu adresler sizin değil.", HttpStatusCode.BadRequest);
+            }
             var addresses = await _service.Query().Where(c => c.UserId == userId).ToListAsync();
             if (addresses == null || !addresses.Any())
             {
@@ -51,10 +71,15 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<GetAddressesResponseDto>> GetAddressesAsync(int addressId)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (!await _service.Query().AnyAsync(c => c.Id == addressId && c.UserId == userId))
+            {
+                return Response<GetAddressesResponseDto>.Fail("Bu adres sizin değil.", HttpStatusCode.BadRequest);
+            }
             var address = await _service.GetByIdAsync(addressId);
             if (address == null)
             {
-                return Response<GetAddressesResponseDto>.Fail("Ürün Yok.", HttpStatusCode.BadRequest);
+                return Response<GetAddressesResponseDto>.Fail("Adres Yok.", HttpStatusCode.BadRequest);
             }
             else
             {
@@ -65,6 +90,11 @@ namespace backend.Infrastructure.Repositories
 
         public async Task<Response<NoContent>> UpdateAddressesAsync(UpdateAddressesRequestDto newAddress)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (userId != newAddress.UserId)
+            {
+                return Response<NoContent>.Fail("Bu adres sizin değil.", HttpStatusCode.BadRequest);
+            }
             var address = await _service.GetByIdAsync(newAddress.Id);
             if (address == null)
             {
@@ -73,6 +103,27 @@ namespace backend.Infrastructure.Repositories
             _mapper.Map(newAddress, address);
             await _service.UpdateAsync(address);
             return Response<NoContent>.Success(HttpStatusCode.OK, "Güncelleme başarılı!");
+        }
+        public async Task<Response<NoContent>> SetAddressDefaultAsync(int userId, int addressId)
+        {
+            var claimUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (claimUserId != userId)
+            {
+                return Response<NoContent>.Fail("Bu adres sizin değil.", HttpStatusCode.BadRequest);
+            }
+            var address = await _service.GetByIdAsync(addressId);
+            if (address == null || address.UserId != userId)
+            {
+                return Response<NoContent>.Fail("Adres bulunamadı veya kullanıcıya ait değil.", HttpStatusCode.BadRequest);
+            }
+            var addresses = await _service.Query().Where(a => a.UserId == userId).ToListAsync();
+            foreach (var addr in addresses)
+            {
+                addr.IsDefault = false; 
+            }
+            address.IsDefault = true;
+            await _service.UpdateAsync(address);
+            return Response<NoContent>.Success(HttpStatusCode.OK, "Adres seçimi başarılı!");
         }
     }
 }

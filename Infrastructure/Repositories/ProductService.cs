@@ -28,12 +28,12 @@ namespace backend.Infrastructure.Repositories
         public async Task<Response<NoContent>> AddProductAsync(CreateProductRequestDto dto)
         {
             if (dto.Image == null || dto.Image.Length == 0) { 
-                //return Response<NoContent>.Fail("Resim zorunlu.", HttpStatusCode.BadRequest);
-                var productt = _mapper.Map<Product>(dto);
-                productt.ImageUrl = "BU KISIM TEST İÇİN SİLİNECEK";
+                return Response<NoContent>.Fail("Resim zorunlu.", HttpStatusCode.BadRequest);
+                //var productt = _mapper.Map<Product>(dto);
+                //productt.ImageUrl = "BU KISIM TEST İÇİN SİLİNECEK";
 
-                await _service.AddAsync(productt);
-                return Response<NoContent>.Success(HttpStatusCode.Created, "Ürün eklendi");
+                //await _service.AddAsync(productt);
+                //return Response<NoContent>.Success(HttpStatusCode.Created, "Ürün eklendi");
             }
             string url = await _blob.UploadAsync(dto.Image);
 

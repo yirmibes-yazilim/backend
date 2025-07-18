@@ -7,12 +7,8 @@ namespace backend.Application.Validator
 {
     public class ProductValidator : AbstractValidator<CreateProductRequestDto>
     {
-        private readonly IProductService _productService;
-        public ProductValidator(IProductService productService)
+        public ProductValidator()
         {
-            _productService = productService;
-
-
             RuleFor(x => x.Name).NotNull().WithMessage("İsim girilmesi zorunludur.")
                 .MinimumLength(2).WithMessage("İsim en az 2 karakter olmalı.")
                 .MaximumLength(100).WithMessage("İsim en fazla 100 karakter olmalı");
@@ -29,10 +25,6 @@ namespace backend.Application.Validator
             RuleFor(x => x.Price).NotNull().WithMessage("Fiyat girilmesi zorunludur.")
                 .Must(s => s > 0).WithMessage("Fiyat 0'dan büyük olmalı");
             
-        }
-        private async Task<bool> UniqueNameAsync(string name, CancellationToken cancellationToken)
-        {
-            return await _productService.IsProductNameExist(name);
         }
     }
 }

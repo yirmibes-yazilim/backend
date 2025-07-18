@@ -6,7 +6,7 @@ namespace backend.Application.Services
 {
     public interface IUserRoleService
     {
-        Task<Response<GetUserRoleResponse>> GetUserRoleAsync(int userId);
+        Task<Response<List<GetUserRoleResponse>>> GetUserRoleAsync(int userId);
         Task<Response<List<GetUserRoleResponse>>> GetUserRoleAllAsync();
         Task<Response<NoContent>> AddUserRoleAsync(CreateUserRoleRequest userRoleRequest);
         Task<Response<NoContent>> UpdateUserRoleAsync(UpdateUserRoleRequest userRoleRequest);

@@ -12,5 +12,6 @@ namespace backend.Application.Services
         Task<Response<NoContent>> UpdateAddressesAsync(UpdateAddressesRequestDto newAddress);
         Task<Response<NoContent>> DeleteAddressesAsync(int addressId);
         Task<Response<IEnumerable<GetAddressesResponseDto>>> GetAddressesAllByUserIdAsync(int userId);
+        Task<Response<NoContent>> SetAddressDefaultAsync(int userId, int addressId);
     }
 }

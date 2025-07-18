@@ -1,2 +1,0 @@
-00:28:22 [INFO] Request 
-00:28:22 [WARN] Response  404 (258ms)

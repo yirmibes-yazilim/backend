@@ -10,5 +10,7 @@ namespace backend.Application.DTOs.Order
         public int TotalAmount { get; set; }
         public bool Status { get; set; }
         public IEnumerable<GetOrderItemResponseDto> OrderItems { get; set; }
-}
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+    }
 }

@@ -16,6 +16,7 @@
         public List<Order> Orders { get; set; }
         public List<FavoriteProduct> FavoriteProducts { get; set; }
         public List<EmailVerificationToken> EmailVerificationTokens { get; set; }
+        public List<RatingProduct> RatingProducts { get; set; }
 
     }
 }
