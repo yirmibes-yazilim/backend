@@ -2,6 +2,7 @@
 using backend.Application.Services;
 using backend.Domain.Entities;
 using backend.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace backend.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
@@ -17,10 +19,10 @@ namespace backend.WebAPI.Controllers
         {
             _orderService = orderService;
         }
-        [HttpPost("confirmCard/{userId}")]
-        public async Task<ActionResult<GetOrderResponseDto>> ConfrimCard(int userId)
+        [HttpPost("confirmCard")]
+        public async Task<ActionResult<GetOrderResponseDto>> ConfrimCard()
         {
-            return Ok(await _orderService.ConfirmCardAsync(userId));
+            return Ok(await _orderService.ConfirmCardAsync());
         }
 
         [HttpGet("getById/{id}")]
@@ -29,10 +31,10 @@ namespace backend.WebAPI.Controllers
             return Ok(await _orderService.GetOrderById(id));
         }
 
-        [HttpGet("getUsersOrders/{userId}")]
-        public async Task<IActionResult> GetUsersCardItems(int userId)
+        [HttpGet("getUsersOrders")]
+        public async Task<IActionResult> GetUsersCardItems()
         {
-            return Ok(await _orderService.GetAllByUserId(userId));
+            return Ok(await _orderService.GetAllByUserId());
         }
 
     }

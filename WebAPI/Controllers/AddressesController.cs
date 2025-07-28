@@ -19,10 +19,10 @@ namespace backend.WebAPI.Controllers
             _addressesService = addressesService;
         }
 
-        [HttpGet("getAllByUserId/{id}")]
-        public async Task<IActionResult> GetAllByUserId(int id)
+        [HttpGet("getAllByUser")]
+        public async Task<IActionResult> GetAllByUserId()
         {
-            return Ok(await _addressesService.GetAddressesAllByUserIdAsync(id));
+            return Ok(await _addressesService.GetAddressesAllByUserIdAsync());
         }
 
         [HttpGet("getById/{id}")]
@@ -48,10 +48,10 @@ namespace backend.WebAPI.Controllers
         {
             return Ok(await _addressesService.DeleteAddressesAsync(id));
         }
-        [HttpPost("setDefault/{userId}/{addressId}")]
-        public async Task<IActionResult> SetDefault(int userId, int addressId)
+        [HttpPost("setDefault/{addressId}")]
+        public async Task<IActionResult> SetDefault(int addressId)
         {
-            return Ok(await _addressesService.SetAddressDefaultAsync(userId, addressId));
+            return Ok(await _addressesService.SetAddressDefaultAsync(addressId));
         }
     }
 }

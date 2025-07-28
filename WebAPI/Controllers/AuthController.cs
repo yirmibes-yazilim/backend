@@ -32,16 +32,6 @@ namespace backend.WebAPI.Controllers
         {
             return Ok(await _authService.RefreshTokenAsync(tokenRequest));
         }
-        [HttpPost("email-send-confirm-token/{userId}")]
-        public async Task<ActionResult<Response<NoContent>>> EmailSendConfirmToken(int userId)
-        {
-            return Ok(await _authService.EmailSendConfirmTokenAsync(userId));
-        }
-        [HttpPost("verify-email-confirm-token")]
-        public async Task<ActionResult<Response<NoContent>>> VerifyEmailConfirmToken(int userId, string confirmationToken)
-        {
-            return Ok(await _authService.VerifyEmailConfirmTokenAsync(userId, confirmationToken));
-        }
         [HttpPost("change-password")]
         public async Task<ActionResult<Response<NoContent>>> ChangePassword(ChangePasswordRequestDto dto)
         {

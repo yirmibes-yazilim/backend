@@ -2,6 +2,7 @@
 using backend.Application.DTOs.RatingProduct;
 using backend.Application.Services;
 using backend.Domain.Entities;
+using backend.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -14,23 +15,28 @@ namespace backend.Infrastructure.Repositories
     {
         private readonly IService<RatingProduct> _service;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RatingProductService(IService<RatingProduct> service, IMapper mapper)
+        public RatingProductService(IService<RatingProduct> service, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _service = service;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Response<NoContent>> AddRatingAsync(CreateRatingProductRequestDto createRatingProductRequestDto)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
             var rating = _mapper.Map<RatingProduct>(createRatingProductRequestDto);
+            rating.UserId = userId;
             await _service.AddAsync(rating);
             return Response<NoContent>.Success(HttpStatusCode.OK, "Kullanıcı değerlendirmesi başarılı");
         }
 
-        public async Task<Response<NoContent>> DeleteRatingAsync(int productId, int userId)
+        public async Task<Response<NoContent>> DeleteRatingAsync(int productId)
         {
-            var rating = _service.GetFirstOrDefaultAsync(r => r.ProductId == productId && r.UserId == userId);
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var rating = await _service.GetFirstOrDefaultAsync(r => r.ProductId == productId && r.UserId == userId);
             if (rating == null)
             {
                 return Response<NoContent>.Fail("Değerlendirme bulunamadı", HttpStatusCode.NotFound);
@@ -50,8 +56,9 @@ namespace backend.Infrastructure.Repositories
             return Response<IEnumerable<GetRatingProductResponseDto>>.Success(ratingDtos, HttpStatusCode.OK, "Ürün değerlendirmeleri başarıyla getirildi");
         }
 
-        public async Task<Response<IEnumerable<GetRatingProductResponseDto>>> GetRatingsByUserAsync(int userId)
+        public async Task<Response<IEnumerable<GetRatingProductResponseDto>>> GetRatingsByUserAsync()
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
             var ratings = await _service.Query().Where(r => r.UserId == userId).ToListAsync();
             if (ratings == null)
             {
@@ -61,15 +68,16 @@ namespace backend.Infrastructure.Repositories
             return Response<IEnumerable<GetRatingProductResponseDto>>.Success(ratingDtos, HttpStatusCode.OK, "Ürün değerlendirmeleri başarıyla getirildi");
         }
 
-        public async Task<Response<GetRatingProductResponseDto>> GetUserRatingAsync(int productId, int userId)
+        public async Task<Response<IEnumerable<GetRatingProductResponseDto>>> GetUserProductRatingsAsync(int productId)
         {
-            var rating = _service.GetFirstOrDefaultAsync(r => r.ProductId == productId && r.UserId == userId);
-            if (rating == null)
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var ratings = await _service.Query().Where(r => r.ProductId == productId && r.UserId == userId).ToListAsync();
+            if (ratings == null)
             {
-                return Response<GetRatingProductResponseDto>.Fail("Değerlendirme bulunamadı", HttpStatusCode.NotFound);
+                return Response<IEnumerable<GetRatingProductResponseDto>>.Fail("Değerlendirme bulunamadı", HttpStatusCode.NotFound);
             }
-            var ratingDto = _mapper.Map<GetRatingProductResponseDto>(rating);
-            return Response<GetRatingProductResponseDto>.Success(ratingDto, HttpStatusCode.OK, "Kullanıcı değerlendirmesi başarıyla getirildi");
+            var ratingDto = _mapper.Map<IEnumerable<GetRatingProductResponseDto>>(ratings);
+            return Response<IEnumerable<GetRatingProductResponseDto>>.Success(ratingDto, HttpStatusCode.OK, "Kullanıcı değerlendirmesi başarıyla getirildi");
         }
     }
 }

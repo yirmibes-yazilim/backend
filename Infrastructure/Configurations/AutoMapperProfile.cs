@@ -65,7 +65,8 @@ namespace API.Infrastructure.Profiles
             CreateMap<CreateFavoriteProductRequestDto, FavoriteProduct>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
-            CreateMap<RatingProduct, GetRatingProductResponseDto> ();
+            CreateMap<RatingProduct, GetRatingProductResponseDto> ()
+                .ReverseMap();
             CreateMap<UpdateRatingProductRequest, RatingProduct>();
             CreateMap<CreateRatingProductRequestDto, RatingProduct>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());

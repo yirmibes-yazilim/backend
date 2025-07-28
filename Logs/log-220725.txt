@@ -1,0 +1,27 @@
+16:22:14 [INFO] IP: 192.168.25.125 Request api/cartItems
+16:22:14 [WARN] Response api/cartItems 404 (100ms)
+16:22:15 [INFO] IP: 192.168.25.125 Request api/cartItems
+16:22:15 [WARN] Response api/cartItems 404 (36ms)
+16:23:02 [INFO] IP: 192.168.25.125 Request api/Auth/register
+16:23:03 [INFO] Response api/Auth/register 200 (1161ms)
+16:24:46 [INFO] IP: 192.168.25.125 Request api/Auth/login
+16:24:46 [INFO] Response api/Auth/login 200 (333ms)
+16:40:58 [INFO] IP: 192.168.25.122 Request 
+16:40:58 [WARN] Response  404 (88ms)
+16:43:45 [INFO] IP: 192.168.25.125 Request api/Auth/login
+16:43:46 [INFO] Response api/Auth/login 200 (208ms)
+16:44:15 [INFO] IP: 192.168.25.125 Request api/Auth/login
+16:44:15 [INFO] Response api/Auth/login 200 (760ms)
+17:23:27 [INFO] IP: 192.168.25.125 Request api/CardItem/getUsersCardItems/32
+17:23:28 [INFO] Response api/CardItem/getUsersCardItems/32 200 (308ms)
+17:24:28 [INFO] IP: 192.168.25.125 Request api/CardItem/getById/32
+17:24:28 [INFO] Response api/CardItem/getById/32 200 (63ms)
+17:25:10 [INFO] IP: 192.168.25.125 Request api/CardItem/create
+17:47:16 [INFO] IP: 192.168.25.122 Request 
+17:47:16 [WARN] Response  404 (2ms)
+17:51:03 [INFO] IP: 192.168.25.125 Request api/CardItem/getAll
+17:51:03 [WARN] Response api/CardItem/getAll 404 (16ms)
+17:51:03 [INFO] IP: 192.168.25.125 Request api/CardItem/getAll
+17:51:03 [WARN] Response api/CardItem/getAll 404 (1ms)
+17:54:34 [INFO] IP: 192.168.25.122 Request api/Products/list
+17:54:34 [INFO] Response api/Products/list 200 (517ms)

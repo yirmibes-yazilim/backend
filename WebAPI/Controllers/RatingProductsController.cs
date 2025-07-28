@@ -1,5 +1,6 @@
 ﻿using backend.Application.DTOs.RatingProduct;
 using backend.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,29 +17,33 @@ namespace backend.WebAPI.Controllers
             _ratingProductService = ratingProductService;
         }
         [HttpPost("add")]
+        [Authorize]
         public async Task<IActionResult> AddRatingAsync(CreateRatingProductRequestDto createRatingProductRequestDto)
         {
             return Ok(await _ratingProductService.AddRatingAsync(createRatingProductRequestDto));
         }
-        [HttpGet("getUserRating/{productId}/{userId}")]
-        public async Task<IActionResult> GetUserRatingAsync(int productId, int userId)
+        [HttpGet("getUserRating/{productId}")]
+        [Authorize]
+        public async Task<IActionResult> GetUserRatingAsync(int productId)
         {
-            return Ok(await _ratingProductService.GetUserRatingAsync(productId, userId));
+            return Ok(await _ratingProductService.GetUserProductRatingsAsync(productId));
         }
         [HttpGet("getRatingsByProduct/{productId}")]
         public async Task<IActionResult> GetRatingsByProductAsync(int productId)
         {
             return Ok(await _ratingProductService.GetRatingsByProductAsync(productId));
         }
-        [HttpGet("getRatingsByUser/{userId}")]
-        public async Task<IActionResult> GetRatingsByUserAsync(int userId)
+        [HttpGet("getRatingsByUser")]
+        [Authorize]
+        public async Task<IActionResult> GetRatingsByUserAsync()
         {
-            return Ok(await _ratingProductService.GetRatingsByUserAsync(userId));
+            return Ok(await _ratingProductService.GetRatingsByUserAsync());
         }
-        [HttpDelete("deleteRating/{productId}/{userId}")]
-        public async Task<IActionResult> DeleteRatingAsync(int productId, int userId)
+        [HttpDelete("deleteRating/{productId}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteRatingAsync(int productId)
         {
-            return Ok(await _ratingProductService.DeleteRatingAsync(productId, userId));
+            return Ok(await _ratingProductService.DeleteRatingAsync(productId));
         }
     }
 }

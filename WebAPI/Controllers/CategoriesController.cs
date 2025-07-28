@@ -2,6 +2,7 @@
 using backend.Application.DTOs.Product;
 using backend.Application.Services;
 using backend.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,18 +32,21 @@ namespace backend.WebAPI.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateCategoryRequestDto dto)
         {
             return Ok(await _categoryService.AddCategoryAsync(dto));
         }
 
         [HttpPut("update")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(UpdateCategoryRequestDto dto)
         {
             return Ok(await _categoryService.UpdateCategoryAsync(dto));
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await _categoryService.DeleteCategoryAsync(id));

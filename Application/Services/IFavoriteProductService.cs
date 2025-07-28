@@ -10,7 +10,7 @@ namespace backend.Application.Services
     public interface IFavoriteProductService
     {
         Task<Response<NoContent>> AddFavoriteProductAsync(CreateFavoriteProductRequestDto req);
-        Task<Response<IEnumerable<GetProductResponseDto>>> GetUserFavoriteProductAll(int userId);
+        Task<Response<IEnumerable<GetProductResponseDto>>> GetUserFavoriteProductAll();
         Task<Response<NoContent>> RemoveFavoriteProductAsync(RemoveFavoriteProductRequestDto req);
     }
 }

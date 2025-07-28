@@ -2,6 +2,7 @@
 using backend.Application.DTOs.Order;
 using backend.Application.Services;
 using backend.Domain.Entities;
+using backend.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using YirmibesYazilim.Framework.Models.Responses;
@@ -14,17 +15,20 @@ namespace backend.Infrastructure.Repositories
         private readonly IService<CardItem> _cardItemService;
         private readonly IService<Order> _orderService;
         private readonly IService<Address> _addressService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public OrderService(IMapper mapper, IService<CardItem> cardItemService, IService<Order> orderService, IService<Address> addressService)
+        public OrderService(IMapper mapper, IService<CardItem> cardItemService, IService<Order> orderService, IService<Address> addressService, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _cardItemService = cardItemService;
             _orderService = orderService;
             _addressService = addressService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<Response<GetOrderResponseDto>> ConfirmCardAsync(int userId)
+        public async Task<Response<GetOrderResponseDto>> ConfirmCardAsync()
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
             var cardItems = await _cardItemService.Query()
                 .Where(x => x.UserId == userId)
                 .Include(p => p.Product).ToListAsync();
@@ -62,8 +66,9 @@ namespace backend.Infrastructure.Repositories
             return Response<GetOrderResponseDto>.Success(response, HttpStatusCode.OK, "Sipariş oluşturuldu.");
         }
 
-        public async Task<Response<IEnumerable<GetOrderResponseDto>>> GetAllByUserId(int userId)
+        public async Task<Response<IEnumerable<GetOrderResponseDto>>> GetAllByUserId()
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
             var orders = await _orderService.Query()
               .Include(o => o.OrderItems)
               .Where(c => c.UserId == userId)

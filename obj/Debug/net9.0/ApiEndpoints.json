@@ -34,17 +34,11 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.AddressesController",
     "Method": "GetAllByUserId",
-    "RelativePath": "api/Addresses/getAllByUserId/{id}",
+    "RelativePath": "api/Addresses/getAllByUser",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -66,16 +60,11 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.AddressesController",
     "Method": "SetDefault",
-    "RelativePath": "api/Addresses/setDefault/{userId}/{addressId}",
+    "RelativePath": "api/Addresses/setDefault/{addressId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
       {
         "Name": "addressId",
         "Type": "System.Int32",
@@ -127,32 +116,6 @@
       {
         "Name": "dto",
         "Type": "backend.Application.DTOs.Auth.ChangePasswordRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "backend.WebAPI.Controllers.AuthController",
-    "Method": "EmailSendConfirmToken",
-    "RelativePath": "api/Auth/email-send-confirm-token/{userId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -247,50 +210,13 @@
     ]
   },
   {
-    "ContainingType": "backend.WebAPI.Controllers.AuthController",
-    "Method": "VerifyEmailConfirmToken",
-    "RelativePath": "api/Auth/verify-email-confirm-token",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "confirmationToken",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "backend.WebAPI.Controllers.CardItemController",
     "Method": "ClearUsersCardItems",
-    "RelativePath": "api/CardItem/clearUsersCardItems/{userId}",
+    "RelativePath": "api/CardItem/clearUsersCardItems",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -344,17 +270,11 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.CardItemController",
     "Method": "GetUsersCardItems",
-    "RelativePath": "api/CardItem/getUsersCardItems/{userId}",
+    "RelativePath": "api/CardItem/getUsersCardItems",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -471,17 +391,11 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.FavoriteProductsController",
     "Method": "List",
-    "RelativePath": "api/FavoriteProducts/list/{userId}",
+    "RelativePath": "api/FavoriteProducts/list",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -501,19 +415,59 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "backend.WebAPI.Controllers.OrdersController",
-    "Method": "ConfrimCard",
-    "RelativePath": "api/Orders/confirmCard/{userId}",
+    "ContainingType": "backend.WebAPI.Controllers.MailController",
+    "Method": "EmailSendConfirmToken",
+    "RelativePath": "api/Mail/email-send-confirm-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.MailController",
+    "Method": "VerifyEmailConfirmToken",
+    "RelativePath": "api/Mail/verify-email-confirm-token",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Name": "confirmationToken",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
+    "ReturnTypes": [
+      {
+        "Type": "YirmibesYazilim.Framework.Models.Responses.Response\u00601[[Microsoft.AspNetCore.Http.HttpResults.NoContent, Microsoft.AspNetCore.Http.Results, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.OrdersController",
+    "Method": "ConfrimCard",
+    "RelativePath": "api/Orders/confirmCard",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "backend.Application.DTOs.Order.GetOrderResponseDto",
@@ -555,17 +509,11 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.OrdersController",
     "Method": "GetUsersCardItems",
-    "RelativePath": "api/Orders/getUsersOrders/{userId}",
+    "RelativePath": "api/Orders/getUsersOrders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -742,18 +690,13 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
     "Method": "DeleteRatingAsync",
-    "RelativePath": "api/RatingProducts/deleteRating/{productId}/{userId}",
+    "RelativePath": "api/RatingProducts/deleteRating/{productId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "productId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "userId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -779,7 +722,59 @@
   {
     "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
     "Method": "GetRatingsByUserAsync",
-    "RelativePath": "api/RatingProducts/getRatingsByUser/{userId}",
+    "RelativePath": "api/RatingProducts/getRatingsByUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
+    "Method": "GetUserRatingAsync",
+    "RelativePath": "api/RatingProducts/getUserRating/{productId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.UserRoleController",
+    "Method": "AddUserRoleAsync",
+    "RelativePath": "api/UserRole/addUserRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createUserRoleRequest",
+        "Type": "backend.Application.DTOs.UserRole.CreateUserRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.UserRoleController",
+    "Method": "GetAllRolesAsync",
+    "RelativePath": "api/UserRole/getAllRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.UserRoleController",
+    "Method": "GetUserRolesByUserId",
+    "RelativePath": "api/UserRole/getUserRoles/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -793,24 +788,45 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "backend.WebAPI.Controllers.RatingProductsController",
-    "Method": "GetUserRatingAsync",
-    "RelativePath": "api/RatingProducts/getUserRating/{productId}/{userId}",
-    "HttpMethod": "GET",
+    "ContainingType": "backend.WebAPI.Controllers.UserRoleController",
+    "Method": "RemoveUserRoleAsync",
+    "RelativePath": "api/UserRole/removeUserRole",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "productId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
         "Name": "userId",
         "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.UserRoleController",
+    "Method": "UpdateUserRoleAsync",
+    "RelativePath": "api/UserRole/updateUserRole",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateUserRoleRequest",
+        "Type": "backend.Application.DTOs.UserRole.UpdateUserRoleRequest",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend.WebAPI.Controllers.UsersController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/Users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

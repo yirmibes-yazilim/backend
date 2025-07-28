@@ -5,21 +5,10 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Addresses/getAllByUserId/{id}": {
+    "/api/Addresses/getAllByUser": {
       "get": {
         "tags": [
           "Addresses"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -136,21 +125,12 @@
         }
       }
     },
-    "/api/Addresses/setDefault/{userId}/{addressId}": {
+    "/api/Addresses/setDefault/{addressId}": {
       "post": {
         "tags": [
           "Addresses"
         ],
         "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
           {
             "name": "addressId",
             "in": "path",
@@ -343,92 +323,6 @@
         }
       }
     },
-    "/api/Auth/email-send-confirm-token/{userId}": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoContentResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoContentResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoContentResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Auth/verify-email-confirm-token": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "confirmationToken",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoContentResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoContentResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoContentResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Auth/change-password": {
       "post": {
         "tags": [
@@ -477,21 +371,10 @@
         }
       }
     },
-    "/api/CardItem/getUsersCardItems/{userId}": {
+    "/api/CardItem/getUsersCardItems": {
       "get": {
         "tags": [
           "CardItem"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -607,21 +490,10 @@
         }
       }
     },
-    "/api/CardItem/clearUsersCardItems/{userId}": {
+    "/api/CardItem/clearUsersCardItems": {
       "delete": {
         "tags": [
           "CardItem"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -750,21 +622,10 @@
         }
       }
     },
-    "/api/FavoriteProducts/list/{userId}": {
+    "/api/FavoriteProducts/list": {
       "get": {
         "tags": [
           "FavoriteProducts"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -835,21 +696,77 @@
         }
       }
     },
-    "/api/Orders/confirmCard/{userId}": {
+    "/api/Mail/email-send-confirm-token": {
       "post": {
         "tags": [
-          "Orders"
+          "Mail"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoContentResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoContentResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoContentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Mail/verify-email-confirm-token": {
+      "post": {
+        "tags": [
+          "Mail"
         ],
         "parameters": [
           {
-            "name": "userId",
-            "in": "path",
-            "required": true,
+            "name": "confirmationToken",
+            "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoContentResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoContentResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoContentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Orders/confirmCard": {
+      "post": {
+        "tags": [
+          "Orders"
         ],
         "responses": {
           "200": {
@@ -915,21 +832,10 @@
         }
       }
     },
-    "/api/Orders/getUsersOrders/{userId}": {
+    "/api/Orders/getUsersOrders": {
       "get": {
         "tags": [
           "Orders"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -1204,7 +1110,7 @@
         }
       }
     },
-    "/api/RatingProducts/getUserRating/{productId}/{userId}": {
+    "/api/RatingProducts/getUserRating/{productId}": {
       "get": {
         "tags": [
           "RatingProducts"
@@ -1212,15 +1118,6 @@
         "parameters": [
           {
             "name": "productId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "userId",
             "in": "path",
             "required": true,
             "schema": {
@@ -1259,10 +1156,45 @@
         }
       }
     },
-    "/api/RatingProducts/getRatingsByUser/{userId}": {
+    "/api/RatingProducts/getRatingsByUser": {
       "get": {
         "tags": [
           "RatingProducts"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RatingProducts/deleteRating/{productId}": {
+      "delete": {
+        "tags": [
+          "RatingProducts"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserRole/getUserRoles/{userId}": {
+      "get": {
+        "tags": [
+          "UserRole"
         ],
         "parameters": [
           {
@@ -1282,30 +1214,106 @@
         }
       }
     },
-    "/api/RatingProducts/deleteRating/{productId}/{userId}": {
+    "/api/UserRole/addUserRole": {
+      "post": {
+        "tags": [
+          "UserRole"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRoleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRoleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserRole/updateUserRole": {
+      "put": {
+        "tags": [
+          "UserRole"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRoleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRoleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserRole/removeUserRole": {
       "delete": {
         "tags": [
-          "RatingProducts"
+          "UserRole"
         ],
         "parameters": [
           {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
             "name": "userId",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserRole/getAllRoles": {
+      "get": {
+        "tags": [
+          "UserRole"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Users": {
+      "get": {
+        "tags": [
+          "Users"
         ],
         "responses": {
           "200": {
@@ -1338,10 +1346,6 @@
       "CreateAddressesRequestDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "addressLine1": {
             "type": "string",
             "nullable": true
@@ -1368,10 +1372,6 @@
       "CreateCardItemRequestDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "productId": {
             "type": "integer",
             "format": "int32"
@@ -1403,10 +1403,6 @@
           "productId": {
             "type": "integer",
             "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1414,10 +1410,6 @@
       "CreateRatingProductRequestDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "productId": {
             "type": "integer",
             "format": "int32"
@@ -1429,6 +1421,20 @@
           "comment": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateUserRoleRequest": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1672,10 +1678,6 @@
           "productId": {
             "type": "integer",
             "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1684,10 +1686,6 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
             "type": "integer",
             "format": "int32"
           },
@@ -1728,6 +1726,24 @@
           "description": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateUserRoleRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

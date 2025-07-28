@@ -5,9 +5,9 @@ namespace backend.Application.Services
 {
     public interface IOrderService
     {
-        Task<Response<GetOrderResponseDto>> ConfirmCardAsync(int userId);
+        Task<Response<GetOrderResponseDto>> ConfirmCardAsync();
         Task<Response<GetOrderResponseDto>> GetOrderById(int orderId);
-        Task<Response<IEnumerable<GetOrderResponseDto>>> GetAllByUserId(int userId);
+        Task<Response<IEnumerable<GetOrderResponseDto>>> GetAllByUserId();
 
     }
 }

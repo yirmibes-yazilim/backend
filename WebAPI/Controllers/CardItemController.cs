@@ -1,6 +1,7 @@
 ﻿using backend.Application.DTOs.CardItem;
 using backend.Application.DTOs.Product;
 using backend.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace backend.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CardItemController : ControllerBase
     {
         private readonly ICardItemService _cardItemService;
@@ -16,10 +18,10 @@ namespace backend.WebAPI.Controllers
             _cardItemService = cardItemService;
         }
 
-        [HttpGet("getUsersCardItems/{userId}")]
-        public async Task<IActionResult> GetUsersCardItems(int userId)
+        [HttpGet("getUsersCardItems")]
+        public async Task<IActionResult> GetUsersCardItems()
         {
-            return Ok(await _cardItemService.GetCardItemsAllByUserIdAsync(userId));
+            return Ok(await _cardItemService.GetCardItemsAllByUserIdAsync());
         }
 
         [HttpGet("getById/{id}")]
@@ -46,10 +48,10 @@ namespace backend.WebAPI.Controllers
             return Ok(await _cardItemService.DeleteCardItemAsync(id));
         }
 
-        [HttpDelete("clearUsersCardItems/{userId}")]
-        public async Task<IActionResult> ClearUsersCardItems(int userId)
+        [HttpDelete("clearUsersCardItems")]
+        public async Task<IActionResult> ClearUsersCardItems()
         {
-            return Ok(await _cardItemService.ClearCardItemsAllByUserIdAsync(userId));
+            return Ok(await _cardItemService.ClearCardItemsAllByUserIdAsync());
         }
     }
 }

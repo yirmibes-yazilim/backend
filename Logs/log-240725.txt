@@ -1,0 +1,31 @@
+09:52:42 [INFO] IP: 192.168.25.125 Request api/CardItem/getAll
+09:52:42 [WARN] Response api/CardItem/getAll 404 (157ms)
+09:52:42 [INFO] IP: 192.168.25.125 Request api/CardItem/getAll
+09:52:42 [WARN] Response api/CardItem/getAll 404 (5ms)
+09:53:06 [INFO] IP: 192.168.25.122 Request 
+09:53:06 [WARN] Response  404 (3ms)
+09:53:15 [INFO] IP: 192.168.25.122 Request 
+09:53:15 [WARN] Response  404 (5ms)
+09:54:05 [INFO] IP: 192.168.25.122 Request api/Products/list
+09:54:06 [INFO] Response api/Products/list 200 (494ms)
+09:55:21 [INFO] IP: 192.168.25.122 Request api/Auth/login
+09:55:21 [INFO] Response api/Auth/login 200 (325ms)
+09:55:40 [INFO] IP: 192.168.25.122 Request api/Auth/register
+09:55:42 [INFO] Response api/Auth/register 200 (1142ms)
+09:55:48 [INFO] IP: 192.168.25.122 Request api/Auth/login
+09:55:49 [INFO] Response api/Auth/login 200 (687ms)
+09:56:53 [INFO] IP: 192.168.25.122 Request api/RatingProducts/add
+09:56:53 [INFO] Response api/RatingProducts/add 200 (108ms)
+09:57:06 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getUserRating/1/5
+09:58:30 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getUserRating/1/5
+09:58:52 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getUserRating/1/5
+10:00:51 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getRatingsByUser/5
+10:00:52 [INFO] Response api/RatingProducts/getRatingsByUser/5 200 (433ms)
+10:01:01 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getRatingsByProduct/1
+10:01:01 [INFO] Response api/RatingProducts/getRatingsByProduct/1 200 (79ms)
+10:02:49 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getUserRating/1/5
+10:03:15 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getRatingsByProduct/1
+10:03:15 [INFO] Response api/RatingProducts/getRatingsByProduct/1 200 (333ms)
+10:03:18 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getRatingsByUser/5
+10:10:19 [INFO] IP: 192.168.25.122 Request api/RatingProducts/getUserRating/1/5
+10:10:19 [INFO] Response api/RatingProducts/getUserRating/1/5 200 (336ms)

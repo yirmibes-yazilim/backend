@@ -4,6 +4,7 @@ using backend.Application.DTOs.Token;
 using backend.Application.DTOs.UserRole;
 using backend.Application.Services;
 using backend.Domain.Entities;
+using backend.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,7 +23,9 @@ namespace backend.Infrastructure.Repositories
         private readonly IMapper _mapper;
         private readonly IMailService _mailService;
         private readonly IService<EmailVerificationToken> _verifyService;
-        public AuthService(IMapper mapper, IService<User> userService, IUserRoleService roleService, ITokenService tokenService, IService<RefreshToken> refreshTokenService, IMailService mailService, IService<EmailVerificationToken> verifyService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AuthService(IMapper mapper, IService<User> userService, IUserRoleService roleService, ITokenService tokenService, IService<RefreshToken> refreshTokenService, IMailService mailService, IService<EmailVerificationToken> verifyService, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _userService = userService;
@@ -31,6 +34,7 @@ namespace backend.Infrastructure.Repositories
             _refreshTokenService = refreshTokenService;
             _mailService = mailService;
             _verifyService = verifyService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<Response<LoginResponseDto>> LoginAsync(LoginRequestDto loginRequestDto)
@@ -147,9 +151,10 @@ namespace backend.Infrastructure.Repositories
             return Response<TokensResponseDto>.Success(tokensResponse, HttpStatusCode.OK, "Token güncellendi");
         }
 
-        public async Task<Response<NoContent>> EmailSendConfirmTokenAsync(int id)
+        public async Task<Response<NoContent>> EmailSendConfirmTokenAsync()
         {
-            var user = await _userService.GetFirstOrDefaultAsync(u => u.Id == id);
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var user = await _userService.GetFirstOrDefaultAsync(u => u.Id == userId);
             if (user != null)
             {
                 var confirmToken = _tokenService.GenerateEmailConfirmToken(user.Id);
@@ -168,8 +173,9 @@ namespace backend.Infrastructure.Repositories
                 return Response<NoContent>.Fail("Kayıtlı mail bulunamadı", HttpStatusCode.NotFound); 
         }
 
-        public async Task<Response<NoContent>> VerifyEmailConfirmTokenAsync(int userId, string confirmationToken)
+        public async Task<Response<NoContent>> VerifyEmailConfirmTokenAsync(string confirmationToken)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
             var token = await _verifyService
                             .GetFirstOrDefaultAsync(t =>
                                 t.UserId == userId &&

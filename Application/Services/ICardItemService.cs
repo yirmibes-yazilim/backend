@@ -11,7 +11,7 @@ namespace backend.Application.Services
         Task<Response<NoContent>> AddCardItemAsync(CreateCardItemRequestDto cardItem);
         Task<Response<NoContent>> UpdateCardItemsQuantityAsync(int cardItemId,int newQuantity);
         Task<Response<NoContent>> DeleteCardItemAsync(int cardItemId);
-        Task<Response<IEnumerable<GetCardItemResponseDto>>> GetCardItemsAllByUserIdAsync(int userId);
-        Task<Response<NoContent>> ClearCardItemsAllByUserIdAsync(int userId);
+        Task<Response<IEnumerable<GetCardItemResponseDto>>> GetCardItemsAllByUserIdAsync();
+        Task<Response<NoContent>> ClearCardItemsAllByUserIdAsync();
     }
 }
